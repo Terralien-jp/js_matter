@@ -35,21 +35,22 @@ let cir3 = Bodies.circle(700, 0, 60, {
     }
 });
 
-World.add(world, [
-    rect,
-    cir,
-    cir2,
-    cir3
-]);
-
-let cir4 = Bodies.circle(80, 0, 50, {
+let cir4 = Bodies.circle(80, 0, 20, {
     restitution: 1,
     render: {
-        sprite:{
+        sprite: {
             texture: 'sample.png'
         }
     }
 });
+
+World.add(world, [
+    rect,
+    cir,
+    cir2,
+    cir3,
+    cir4
+]);
 
 let MouseConstraint = Matter.MouseConstraint,
     Mouse = Matter.Mouse;
@@ -68,10 +69,22 @@ render.mouse = mouse;
 
 // フロアの作成
 let floor = Bodies.rectangle(400, 400, 800, 40, {
-    inStatic: true
+    isStatic: true
 });
 
 World.add(world, floor);
+
+let leftWall = Bodies.rectangle(0, 0, 40, 800, {
+    isStatic: true
+});
+
+World.add(world, leftWall)
+
+let rightWall = Bodies.rectangle(800, 0, 40, 800, {
+    isStatic: true
+});
+
+World.add(world, rightWall)
 
 Render.run(render);
 Engine.run(engine);
